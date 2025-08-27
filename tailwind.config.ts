@@ -1,17 +1,27 @@
 import type {Config} from "tailwindcss";
+/**@type {import('tailwindcss').Config}*/
 
 // import type {Config as TailwindConfig} from "tailwindcss/types/config";
-module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
+// module.exports = {
+//   content: [
+//     "./app/**/*.{js,ts,jsx,tsx}",
+//     "./components/**/*.{js,ts,jsx,tsx}",
+//     "./pages/**/*.{js,ts,jsx,tsx}",
+//   ],
+
+// const config: Config = {
+//   content: [
+//     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+//     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+//     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+//     // Add any other paths where you use Tailwind classes
+//   ],
+
+//   theme: {
+//     extend: {},
+//   },
+//   plugins: [],
+// }
 const config: Config = {
 	darkMode: "class",
 	content: [
