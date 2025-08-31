@@ -36,6 +36,7 @@ const nextConfig: NextConfig = {
   // Add experimental PostCSS support if needed
   experimental: {
     ppr:"incremental",
+    after:true,
 
     // This is usually not necessary, but can help in some cases
   },

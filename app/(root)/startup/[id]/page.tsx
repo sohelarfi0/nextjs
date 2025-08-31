@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{Suspense} from 'react'
 import { client } from '@/sanity/lib/client'
 import { STARTUPS_BY_ID_QUERY } from '@/sanity/lib/queries'
 import { notFound } from 'next/navigation';
@@ -6,7 +6,8 @@ import { Link } from 'lucide-react';
 import markdoownit  from 'markdown-it';
 import { formatDate } from '@/lib/utils';
 import Image from 'next/image';
-
+import { Skeleton } from '@/components/ui/skeleton';
+import View from '@/components/View';
 const md=markdoownit();
 
 
@@ -32,9 +33,7 @@ const page = async({params}:{params:Promise<{id:string}>}) => {
     </section>
 
     <section className='section-container'>
-        <img src={post.image}
-         alt="thumbnail"
-         className='w-full h-auto rounded-xl' />
+        <Image src={post.image} alt="thumbnail"className='w-full h-auto rounded-xl' />
 
          <div className='space-y-5 mt-10 max-w-4xl mx-auto'>
             <div className='flex-between gap-5'>
@@ -76,6 +75,13 @@ const page = async({params}:{params:Promise<{id:string}>}) => {
                 
             }
         </div>
+
+        <hr className='divider'/>
+        <Suspense fallback={<Skeleton className='view_skeleton'/>}>
+        <View id={id}/>
+        </Suspense>
+
+
 
     </section>
     
