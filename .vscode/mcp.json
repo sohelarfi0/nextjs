@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "Sentry": {
+      "url": "https://mcp.sentry.dev/mcp/selfie-ue/javascript-nextjs",
+      "type": "http"
+    }
+  }
+}
