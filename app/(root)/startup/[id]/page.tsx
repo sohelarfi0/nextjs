@@ -1,6 +1,6 @@
 import React ,{Suspense} from 'react'
 import { client } from '@/sanity/lib/client'
-import { STARTUPS_BY_ID_QUERY } from '@/sanity/lib/queries'
+import { STARTUPS_BY_ID_QUERY ,PLAYLIST_BY_SLUG_QUERY} from '@/sanity/lib/queries'
 import { notFound } from 'next/navigation';
 import { Link } from 'lucide-react';
 import markdoownit  from 'markdown-it';
@@ -8,6 +8,8 @@ import { formatDate } from '@/lib/utils';
 import Image from 'next/image';
 import { Skeleton } from '@/components/ui/skeleton';
 import View from '@/components/View';
+import StartupCard from '@/components/StartupCard';
+import { StartupTypeCard } from '@/components/StartupCard';
 const md=markdoownit();
 
 
@@ -16,10 +18,11 @@ export const experimental_ppr=true;
 
 const page = async({params}:{params:Promise<{id:string}>}) => {
     const id=(await params).id;
-    const post=await client.fetch(STARTUPS_BY_ID_QUERY,{ id});
-     
-    if(!post) return notFound;
+    const [post,{select:editorPosts}]=await Promise.all([client.fetch(STARTUPS_BY_ID_QUERY,{ id}),
+        client.fetch(PLAYLIST_BY_SLUG_QUERY,{slug:'editor-picks'}),
 
+    ])
+    if(!post) return notFound();
     const parsedContent=md.render(post?.pitch ||"");
 
 
@@ -77,6 +80,19 @@ const page = async({params}:{params:Promise<{id:string}>}) => {
         </div>
 
         <hr className='divider'/>
+        {editorPosts?.length>0 &&(
+            <div className='max-w-4xl mx-auto'>
+                <p className='text-30-semibold'>Editor Picks</p>
+                <ul className='mt-7 card_grid-sm'>
+                    {
+                        editorPosts.map((post:StartupTypeCard,i:number)=>(
+                            <StartupCard key={i} {...post} />
+                        ))
+                    }
+                </ul>
+            </div>
+        )}
+
         <Suspense fallback={<Skeleton className='view_skeleton'/>}>
         <View id={id}/>
         </Suspense>

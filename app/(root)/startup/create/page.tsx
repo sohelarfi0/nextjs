@@ -1,11 +1,12 @@
 import React from 'react'
 import {StartupForm }from '@/components/StartupForm'
-import { redirect } from 'next/dist/server/api-utils';
+// import { redirect } from 'next/dist/server/api-utils';
+import{redirect} from "next/navigation";
 import { auth } from '@/auth';
 const page = async() => {
     const  session=await auth();
 
-    if(!session) redirect("/",{status:302});
+    if(!session) redirect("/" );   //{status:302});
   return (
     <>
     <section className='pink_container !min-h-[230px]'>

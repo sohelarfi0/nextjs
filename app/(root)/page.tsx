@@ -42,7 +42,7 @@ export default  async function Home({searchParams}:{
             <h1 className="heading">Pitch Your Setup,<br /> Connect with Entrepreurs</h1>
 
             <p className="sub_heading !max-w-3xl">
-                Submit Ideas,Votr on Pitches, and Get Noticed in virtual Competitions
+                Submit Ideas,Vote on Pitches, and Get Noticed in virtual Competitions
             </p>
 
             <SearchForm  query={query}/>

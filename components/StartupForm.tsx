@@ -242,6 +242,11 @@ export const StartupForm = () => {
     const [pitch, setPitch] = useState("");
     const router = useRouter();
 
+    // toast({
+    //     title: "Success",
+    //     description:"Your startup pitch has been created successfully.",
+    // })
+
     const handleFormSubmit = async (
         prevState: { error: string; status: string },
         formData: FormData
